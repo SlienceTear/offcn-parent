@@ -1,0 +1,37 @@
+server:
+  port: 9000
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/zhongchou?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 192.168.188.128
+    port: 6379
+  application:
+    name: SCW-PROJECT
+mybatis:
+  config-location: classpath:mybatis/mybatis.xml
+  mapper-locations: classpath:com/offcn/project/mapper/*.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    appname: SCW-PROJECT
+    prefer-ip-address: true
+oss:
+  endpoint: http://oss-cn-chengdu.aliyuncs.com
+  bucketDomain: monstergod594@1993872914437346.onaliyun.com
+  accessKeyId: LTAI4GJNH5NisCGjGYgtf2mD
+  accessKeySecret: NB1E4KVLEKAUzAd1mIkkAhL8fjtaOq
+  bucketName: zheshiwodeoss
+
+logging:
+  file:
+    path: E:\log\scw-project
+  level:
+    com:
+      offcn: debug

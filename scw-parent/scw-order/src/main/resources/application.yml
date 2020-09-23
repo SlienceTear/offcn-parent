@@ -1,0 +1,59 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: SCW-ORDER
+  datasource:
+    url: jdbc:mysql://localhost:3306/zhongchou?serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filter:
+        stat:
+          enabled: true
+        wall:
+          enabled: true
+        config:
+          enabled: true
+      initial-size: 3
+      min-idle: 3
+      max-active: 10
+      max-wait: 60000
+      stat-view-servlet:
+        login-username: admin
+        login-password: admin
+        enabled: true
+        url-pattern: /druid/*
+        allow: 127.0.0.1
+  redis:
+    host: 192.168.188.128
+    port: 6379
+mybatis:
+  config-location: classpath:/mybatis/mybatis.xml
+  type-aliases-package: com.offcn.order.po
+  mapper-locations: classpath:/com/offcn/order/mapper/*.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+logging:
+  level:
+    com:
+      offcn: debug
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 2000  #连接超时时间2秒
+        readTimeout: 2000     #读超时时间2秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000 #设置熔断时间10秒

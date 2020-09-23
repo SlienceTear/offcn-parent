@@ -1,0 +1,14 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: SCW-REGISTER
+eureka:
+  server:
+    enable-self-preservation: true
+    eviction-interval-timer-in-ms: 5000
+  client:
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka
+    register-with-eureka: false
+    fetch-registry: false
